@@ -72,3 +72,15 @@ class TaskMapper:
             created_at=model.created_at,
             updated_at=model.updated_at
         )
+
+    @staticmethod
+    def to_model(entity: task_entity) -> models.TaskModel:
+        return models.TaskModel(
+            id=entity.id,
+            user_id=entity.user_id,
+            title=entity.title,
+            description=entity.description,
+            status=entity.status,
+            created_at=entity.created_at,
+            updated_at=entity.updated_at
+        )

@@ -15,3 +15,10 @@ class Task:
     status: bool
     created_at: date = field(default_factory=utc_now)
     updated_at: date = field(default_factory=utc_now)
+
+
+@dataclass(kw_only=True)
+class UpdateTask:
+    title: str | None = None
+    description: str | None = None
+    status: bool | None = None
