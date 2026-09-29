@@ -1,4 +1,5 @@
 from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy import select
 
 from uuid import UUID
 
@@ -22,23 +23,23 @@ class SqlalchemyUserRepository(UserRepository):
         return str(model.id)
 
 
-    async def update_email_by_id(self, *, id: UUID, email: str) -> str | None:
+    async def update_email_by_id(self, *, id: UUID, new_email: str) -> str | None:
         model = await self.session.get(UserModel, id)
         if model is None:
             return None
 
-        model.email = email
+        model.email = new_email
         await self.session.commit()
         await self.session.refresh(model)
 
         return str(model.id)
 
 
-    async def update_password_by_id(self, *, id: UUID, password: str) -> str | None:
+    async def update_password_by_id(self, *, id: UUID, new_password: str) -> str | None:
         model = await self.session.get(UserModel, id)
         if model is None:
             return None
-        model.password = password
+        model.password = new_password
         await self.session.commit()
         await self.session.refresh(model)
         return str(model.id)

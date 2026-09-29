@@ -15,11 +15,11 @@ class UserRepository(ABC):
         raise NotImplementedError
 
     @abstractmethod
-    async def update_email_by_id(self, *, id: UUID, email: str) -> str | None:
+    async def update_email_by_id(self, *, id: UUID, new_email: str) -> str | None:
         raise NotImplementedError
 
     @abstractmethod
-    async def update_password_by_id(self, *, id: UUID, password: str) -> str | None:
+    async def update_password_by_id(self, *, id: UUID, new_password: str) -> str | None:
         raise NotImplementedError
 
     @abstractmethod
