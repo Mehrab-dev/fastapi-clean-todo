@@ -5,3 +5,6 @@ alembic
 
 # database
 psycopg[binary]
+
+# security
+passlib

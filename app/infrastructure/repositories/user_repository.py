@@ -54,7 +54,9 @@ class SqlalchemyUserRepository(UserRepository):
 
 
     async def get_user_by_email(self, *, email: str) -> user_entity | None:
-        model = await self.session.get(UserModel, email)
-        if model is None:
+        statement = select(UserModel).where(UserModel.email == email)
+        result = await self.session.execute(statement=statement)
+        user = result.scalar_one_or_none()
+        if user is None:
             return None
-        return UserMapper.to_domain(model=model)
+        return UserMapper.to_domain(model=user)

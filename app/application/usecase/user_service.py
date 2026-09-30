@@ -1,8 +1,11 @@
+from sqlalchemy import select
 
 from uuid import UUID
 
 from app.domain.repositories.repositories import UserRepository
 from app.domain.entities.user_entity import User as user_entity
+from app.infrastructure.database.models import UserModel
+from app.core.security.password import hash_password, verify_password
 
 
 
@@ -19,6 +22,7 @@ class UserService:
         statement = await self.repository.get_user_by_email(email=payload.email)
         if statement is not None:
             raise ValueError("user with this email already exists!")
+        payload.password = hash_password(payload.password)
         
         return await self.repository.create_user(payload=payload)
 
@@ -57,13 +61,11 @@ class UserService:
 
 
     # GET /users/login
-    async def login(
-        self,
-        *,
-        id: UUID,
-        email: str
-    ) -> user_entity | None:
-        statement = await self.repository.get_user_by_email(email=email)
-        if statement is None:
-            raise ValueError("user not found!")
-    
+    async def login(self, *, email: str, password: str) -> str | None:
+        user = await self.repository.get_user_by_email(email=email)
+        if user is None:
+            raise ValueError("invalid credentials")
+        if not verify_password(password, user.password):
+            raise ValueError("invalid credentials")
+        return "logged successfully."
+        

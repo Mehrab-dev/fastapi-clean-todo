@@ -4,7 +4,7 @@ from uuid import UUID
 
 from app.domain.entities.user_entity import User as user_entity
 from app.domain.entities.profile_entity import Profile as profile_entity, UpdateProfile
-from app.domain.entities.task_entity import Task as task_entity
+from app.domain.entities.task_entity import Task as task_entity, UpdateTask
 
 
 
@@ -27,7 +27,7 @@ class UserRepository(ABC):
         raise NotImplementedError
 
     @abstractmethod
-    async def get_user_by_email(self, *, email: str) -> str | None:
+    async def get_user_by_email(self, *, email: str) -> user_entity | None:
         raise NotImplementedError
 
 
@@ -65,7 +65,7 @@ class TaskRepository(ABC):
         raise NotImplementedError
 
     @abstractmethod
-    async def update_task_by_task_id(self,  *, user_id: UUID, task_id: UUID, payload: task_entity) -> task_entity | None:
+    async def update_task_by_task_id(self,  *, user_id: UUID, task_id: UUID, payload: UpdateTask) -> task_entity | None:
         raise NotImplementedError
 
     @abstractmethod

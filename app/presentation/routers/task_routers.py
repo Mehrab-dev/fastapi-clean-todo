@@ -26,11 +26,11 @@ async def list_tasks_by_status(*, user_id: UUID, status: bool):
     pass
 
 
-@router.put("/update")
+@router.put("/update/{task_id}")
 async def update_task(*, user_id: UUID, task_id: UUID):
     pass
 
 
-@router.delete("/delete")
+@router.delete("/delete/{task_id}")
 async def delete_task(*, user_id: UUID, task_id: UUID):
     pass
