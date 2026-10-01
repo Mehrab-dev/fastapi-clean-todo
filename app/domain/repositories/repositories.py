@@ -42,7 +42,7 @@ class ProfileRepository(ABC):
         raise NotImplementedError
 
     @abstractmethod
-    async def update_profile(self, *, user_id: UUID, payload: UpdateProfile) -> profile_entity | None:
+    async def update_profile(self, *, user_id: UUID, payload: UpdateProfile, image: str | None) -> profile_entity | None:
         raise NotImplementedError
 
 

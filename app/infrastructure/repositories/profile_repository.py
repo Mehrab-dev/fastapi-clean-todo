@@ -10,7 +10,7 @@ from app.infrastructure.database.models import ProfileModel
 
 
 
-class Sqlalchemy_ProfileRepository(ProfileRepository):
+class SqlalchemyProfileRepository(ProfileRepository):
     def __init__(self, session: AsyncSession):
         self.session = session
 
@@ -34,7 +34,7 @@ class Sqlalchemy_ProfileRepository(ProfileRepository):
 
 
 
-    async def update_profile(self, *, user_id: UUID, payload: UpdateProfile) -> profile_entity | None:
+    async def update_profile(self, *, user_id: UUID, payload: UpdateProfile, image: str) -> profile_entity | None:
         statement = select(ProfileModel).where(ProfileModel.user_id == user_id)
         result = await self.session.execute(statement=statement)
         profile = result.scalar_one_or_none()
@@ -48,8 +48,8 @@ class Sqlalchemy_ProfileRepository(ProfileRepository):
             profile.last_name = payload.last_name
         if payload.bio is not None:
             profile.bio = payload.bio
-        if payload.image is not None:
-            profile.image = payload.image
+        if image is not None:
+            profile.image = image
 
         await self.session.commit()
         await self.session.refresh(profile)

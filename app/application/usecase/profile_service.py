@@ -29,9 +29,10 @@ class ProfileService:
         self,
         *,
         user_id: UUID,
-        payload: UpdateProfile
+        payload: UpdateProfile,
+        image: str | None = None
     ) -> profile_entity | None:
-        result = await self.repository.update_profile(user_id=user_id, payload=payload)
+        result = await self.repository.update_profile(user_id=user_id, payload=payload, image=image)
         if result is None:
             raise ValueError("no profile has been created for this user!")
         return result

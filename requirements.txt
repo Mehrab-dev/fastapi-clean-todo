@@ -2,9 +2,11 @@
 fastapi[standard]
 sqlalchemy
 alembic
+greenlet
 
 # database
 psycopg[binary]
 
 # security
 passlib
+bcrypt==4.0.1

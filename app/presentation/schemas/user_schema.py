@@ -43,14 +43,14 @@ class UserUpdatePasswordSchema(BaseModel):
     new_password: str = Field(..., description="new password of the user for update")
     confirm_new_password: str = Field(..., description="confirm new password of the user for update")
 
-    @field_validator("confirm_password")
+    @field_validator("confirm_new_password")
     @classmethod
-    def check_match_password(cls, confirm_password, validation):
-        if (confirm_password != validation.data.get("password")):
+    def check_match_password(cls, confirm_new_password, validation):
+        if (confirm_new_password != validation.data.get("new_password")):
             raise ValueError("password does not match")
 
 
-    @field_validator("password")
+    @field_validator("new_password")
     @classmethod
     def password_validation(cls, password: str) -> str:
         password_pattern = r"^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).{8,}$"
