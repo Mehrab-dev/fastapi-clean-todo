@@ -1,8 +1,8 @@
-"""creating user, profile and task model
+"""create users, profiles and tasks table
 
-Revision ID: 8db0a8888c79
+Revision ID: 592dbf3910af
 Revises: 
-Create Date: 2026-09-25 22:47:17.443752
+Create Date: 2026-10-03 11:55:22.978201
 
 """
 from typing import Sequence, Union
@@ -12,7 +12,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision: str = '8db0a8888c79'
+revision: str = '592dbf3910af'
 down_revision: Union[str, Sequence[str], None] = None
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
@@ -51,7 +51,7 @@ def upgrade() -> None:
     sa.Column('user_id', sa.UUID(), nullable=False),
     sa.Column('title', sa.String(length=255), nullable=False),
     sa.Column('description', sa.Text(), nullable=True),
-    sa.Column('status', sa.Boolean(), nullable=False),
+    sa.Column('status_task', sa.Boolean(), nullable=False),
     sa.Column('created_at', sa.DateTime(timezone=True), nullable=False),
     sa.Column('updated_at', sa.DateTime(timezone=True), nullable=False),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),

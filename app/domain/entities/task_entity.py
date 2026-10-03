@@ -12,7 +12,7 @@ class Task:
     user_id: UUID = field(default_factory=uuid4)
     title: str
     description: str | None = None
-    status: bool
+    status_task: bool
     created_at: date = field(default_factory=utc_now)
     updated_at: date = field(default_factory=utc_now)
 
@@ -21,4 +21,4 @@ class Task:
 class UpdateTask:
     title: str | None = None
     description: str | None = None
-    status: bool | None = None
+    status_task: bool | None = None

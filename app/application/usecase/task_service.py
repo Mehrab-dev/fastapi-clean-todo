@@ -48,9 +48,12 @@ class TaskService:
         self,
         *,
         user_id: UUID,
-        status: bool
-    ) -> list[task_entity]:
-        return await self.repository.list_tasks_by_status(user_id=user_id, status=status)
+        status_task: bool
+    ) -> list[task_entity] | None:
+        result = await self.repository.list_tasks_by_status(user_id=user_id, status_task=status_task)
+        if result is None:
+            raise ValueError(" there are no tasks whit this status")
+        return result
 
 
     # PUT /tasks/update
@@ -74,5 +77,8 @@ class TaskService:
         user_id: UUID,
         task_id: UUID,
     ) -> None:
-        return await self.repository.delete_task_by_task_id(user_id=user_id, task_id=task_id)
+        result = await self.repository.delete_task_by_task_id(user_id=user_id, task_id=task_id)
+        if result is None:
+            raise ValueError("does not exists task with task_id")
+        return result
            

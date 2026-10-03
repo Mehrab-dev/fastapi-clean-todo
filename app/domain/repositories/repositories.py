@@ -61,7 +61,7 @@ class TaskRepository(ABC):
         raise NotImplementedError
 
     @abstractmethod
-    async def list_tasks_by_status(self, *, user_id: UUID, status: bool, offset: int = 0, limit: int = 5) -> list[task_entity]:
+    async def list_tasks_by_status(self, *, user_id: UUID, status_task: bool, offset: int = 0, limit: int = 5) -> list[task_entity]:
         raise NotImplementedError
 
     @abstractmethod

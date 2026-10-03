@@ -39,8 +39,8 @@ class SqlalchemyTaskRepository(TaskRepository):
         return [TaskMapper.to_domain(task) for task in tasks]
 
 
-    async def list_tasks_by_status(self, *, user_id: UUID, status: bool, offset: int = 0, limit: int = 5) -> list[task_entity]:
-        statement = select(TaskModel).where(TaskModel.user_id == user_id, TaskModel.status == status).offset(offset=offset).limit(limit=limit)
+    async def list_tasks_by_status(self, *, user_id: UUID, status_task: bool, offset: int = 0, limit: int = 5) -> list[task_entity]:
+        statement = select(TaskModel).where(TaskModel.user_id == user_id, TaskModel.status_task == status_task).offset(offset=offset).limit(limit=limit)
         result = await self.session.execute(statement=statement)
         tasks = result.scalars()
 
@@ -62,8 +62,8 @@ class SqlalchemyTaskRepository(TaskRepository):
             task.title = payload.title
         if payload.description is not None:
             task.description = payload.description
-        if payload.status is not None:
-            task.status = payload.status
+        if payload.status_task is not None:
+            task.status_task = payload.status_task
         await self.session.commit()
         await self.session.refresh(task)
         return TaskMapper.to_domain(model=task)

@@ -68,7 +68,7 @@ class TaskMapper:
             user_id=model.user_id,
             title=model.title,
             description=model.description,
-            status=model.status,
+            status_task=model.status_task,
             created_at=model.created_at,
             updated_at=model.updated_at
         )
@@ -80,7 +80,7 @@ class TaskMapper:
             user_id=entity.user_id,
             title=entity.title,
             description=entity.description,
-            status=entity.status,
+            status_task=entity.status_task,
             created_at=entity.created_at,
             updated_at=entity.updated_at
         )
