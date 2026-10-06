@@ -1,0 +1,7 @@
+# main modules
+fastapi[standard]
+sqlalchemy
+alembic
+
+# database
+psycopg[binary]
