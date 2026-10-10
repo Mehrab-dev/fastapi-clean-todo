@@ -20,7 +20,7 @@ class UserRepository(ABC):
         raise NotImplementedError
 
     @abstractmethod
-    async def update_password_by_id(self, *, id: UUID, payload: entities.UpdatePassword) -> None:
+    async def update_password_by_id(self, *, id: UUID, password: str) -> None:
         raise NotImplementedError
 
     @abstractmethod
@@ -31,15 +31,15 @@ class UserRepository(ABC):
 
 class ProfileRepository(ABC):
     @abstractmethod
-    async def create(self, *, user_id: UUID, payload: entities.Profile) -> None:
+    async def create(self, *, user_id: UUID) -> None:
         raise NotImplementedError
 
     @abstractmethod
-    async def get_by_user_id(self, *, user_id: UUID) -> entities.Profile | None:
+    async def get_by_user_id(self, *, user_id: UUID) -> entities.Profile:
         raise NotImplementedError
 
     @abstractmethod
-    async def update_by_user_id(self, *, user_id: UUID, payload: entities.UpdateProfile) -> entities.Profile | None:
+    async def update_by_user_id(self, *, user_id: UUID, payload: entities.UpdateProfile) -> entities.Profile:
         raise NotImplementedError
 
 
@@ -62,7 +62,7 @@ class TaskRepository(ABC):
         raise NotImplementedError
 
     @abstractmethod
-    async def update_by_task_id(self, *, user_id: UUID, task_id: UUID, payload: entities.UpdateTask) -> entities.Task | None:
+    async def update_by_task_id(self, *, user_id: UUID, task_id: UUID, payload: entities.UpdateTask) -> entities.Task:
         raise NotImplementedError
 
     @abstractmethod

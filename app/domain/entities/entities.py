@@ -18,10 +18,10 @@ class User:
     created_at: datetime = field(default_factory=utc_now)
     updated_at: datetime = field(default_factory=utc_now)
 
-@dataclass(kw_only=True)
-class UpdatePassword:
-    new_password: str
-    confirm_new_password: str
+# @dataclass(kw_only=True)
+# class UpdatePassword:
+#     new_password: str
+#     confirm_new_password: str
 
 
 """ profile entities """

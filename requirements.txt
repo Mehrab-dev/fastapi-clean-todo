@@ -1,7 +1,10 @@
 # main modules
 fastapi[standard]
-sqlalchemy
+sqlalchemy[asyncio]
 alembic
 
 # database
 psycopg[binary]
+
+# security
+pwdlib[argon2]
