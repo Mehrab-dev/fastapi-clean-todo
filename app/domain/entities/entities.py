@@ -52,19 +52,19 @@ class Profile:
     def _touch(self) -> None:
         self.updated_at = utc_now()
 
-    def update_firstname(self, first_name: str) -> None:
+    def update_firstname(self, first_name: str | None) -> None:
         self.first_name = first_name
         self._touch()
 
-    def update_lastname(self, last_name: str) -> None:
+    def update_lastname(self, last_name: str | None) -> None:
         self.last_name = last_name
         self._touch()
 
-    def update_bio(self, bio: str) -> None:
+    def update_bio(self, bio: str | None) -> None:
         self.bio = bio
         self._touch()
 
-    def update_image(self, image: str) -> None:
+    def update_image(self, image: str | None) -> None:
         self.image = image
         self._touch()
 
@@ -87,7 +87,7 @@ class Task:
         self.title = title
         self._touch()
 
-    def update_description(self, description: str) -> None:
+    def update_description(self, description: str | None) -> None:
         self.description = description
         self._touch()
 
